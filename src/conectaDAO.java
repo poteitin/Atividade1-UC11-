@@ -17,15 +17,23 @@ import javax.swing.JOptionPane;
  */
 public class conectaDAO {
     
-    public Connection connectDB(){
+   public Connection connectDB(){
         Connection conn = null;
         
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
+            // Altere as informações abaixo de acordo com o seu banco de dados MySQL
+            String host = "localhost"; // Endereço do servidor do banco de dados
+            String port = "3306"; // Porta do servidor do banco de dados
+            String database = "leilao"; // Nome do banco de dados
+            String username = "root"; // Nome de usuário do banco de dados
+            String password = "theteits1213"; // Senha do banco de dados
+            
+            String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?user=" + username + "&password=" + password + "&useSSL=false";
+            
+            conn = DriverManager.getConnection(url);
             
         } catch (SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao conectar ao banco de dados: " + erro.getMessage());
         }
         return conn;
     }
